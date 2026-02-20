@@ -36,7 +36,7 @@ CLUSTER_CONTEXT="kind-cluster2"
 
 # Deploy all resources using kustomize
 log_info "Deploying Product service to cluster2..."
-kubectl apply -f sample-app/cluster2-manifests/ --context=$CLUSTER_CONTEXT || {
+kubectl apply -k sample-app/cluster2-manifests/ --context=$CLUSTER_CONTEXT || {
     log_error "Failed to deploy application"
     exit 1
 }
