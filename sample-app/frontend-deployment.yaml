@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: sayedimran/simple-buy-frontend:v1.0.0
+          image: sayedimran/simple-buy-frontend:v1.0.1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
