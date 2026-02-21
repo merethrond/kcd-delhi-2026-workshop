@@ -3,8 +3,8 @@ set -e
 
 echo "Detecting kind network IP range..."
 
-# Get the kind network subnet
-KIND_NETWORK=$(docker network inspect kind | jq -r '.[0].IPAM.Config[0].Subnet')
+# Get the kind network subnet (IPv4 only)
+KIND_NETWORK=$(docker network inspect kind | jq -r '.[0].IPAM.Config[] | select(.Subnet | contains(":") | not) | .Subnet' | head -n1)
 
 if [ -z "$KIND_NETWORK" ] || [ "$KIND_NETWORK" == "null" ]; then
     echo "Error: Could not detect kind network. Make sure kind clusters are created first."
